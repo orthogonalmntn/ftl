@@ -29,10 +29,10 @@ module FasterThanLight
 
         loop do
           # you strike first:
-          dmg_to_event += (ship.torpedos * random(5)) / random(3)
+          dmg_to_event += (ship.weapon.str * random(5)) / random(3)
           break if dmg_to_event > event.health
 
-          dmg_to_ship += (event.torpedos * random(3)) / random(3)
+          dmg_to_ship += (event.weapon.str * random(3)) / random(3)
         end
 
         scrap_gain = dmg_to_event.floor
@@ -48,7 +48,7 @@ module FasterThanLight
 
       def show_outcome_of_combat(combat_stats)
         puts "------------------------"
-        puts "In combat with #{event.name} / T: #{event.torpedos} H: #{event.health}"
+        puts "In combat with #{event.name} / T: #{event.weapon.str} H: #{event.health}"
         puts "You deal: #{combat_stats.event_damage}"
         puts "Damage gotten: #{combat_stats.ship_damage}"
         puts "Fuel lost: #{combat_stats.fuel_loss}"

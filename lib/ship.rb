@@ -1,15 +1,13 @@
 module FasterThanLight
   class Ship
 
-    attr_reader :fuel, :position, :health, :scrap, :torpedos
-
-    NO_EVENT_MESSAGE = "There seems to be nothing here."
+    attr_reader :fuel, :position, :health, :scrap, :weapon
 
     def initialize(sector_graph: SectorGraph.new)
       @fuel = 10
       @health = 10
       @scrap = 10
-      @torpedos = 3
+      @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: 3)
       @sector_graph = sector_graph.graph
       @position = sector_graph.graph.keys.first
     end
@@ -26,7 +24,7 @@ module FasterThanLight
         event_response = event.resolve_event!(ship: self)
         handle_event_response(event_response)
       else
-        puts NO_EVENT_MESSAGE
+        puts "There seems to be nothing here."
       end
     end
 
