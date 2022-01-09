@@ -2,21 +2,13 @@ module FasterThanLight
   module Events
     class ShipEvent < BaseEvent
 
-      def event_name
-        "Enemy Frigate Zebulon"
-      end
+      attr_reader :name, :description, :torpedos, :health
 
-      def event_description
-        "A strong and sturdy ship made out of carbon composite."
-      end
-
-      # TODO: move these to instance vars in constructor:
-      def torpedos
-        1
-      end
-
-      def health
-        3
+      def initialize
+        @name = "Enemy Frigate Zebulon"
+        @description = "A strong and sturdy ship made out of carbon composite."
+        @torpedos = 1
+        @health = 3
       end
 
       def perform_event_actions(ship:)

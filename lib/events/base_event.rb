@@ -15,17 +15,9 @@ module FasterThanLight
       EventResponse = Struct.new(*EVENT_ACTION_KEYS, :action_resolver, keyword_init: true)
 
       def resolve_event!(ship:)
-        puts "You have stumbled onto: #{event_name}"
-        puts event_description
+        puts "You have stumbled onto: #{name}"
+        puts description
         perform_event_actions(ship: ship)
-      end
-
-      def event_name
-        raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-      end
-
-      def event_description
-        raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
       end
 
       def perform_event_actions

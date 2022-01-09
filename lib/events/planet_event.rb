@@ -2,12 +2,11 @@ module FasterThanLight
   module Events
     class PlanetEvent < BaseEvent
 
-      def event_name
-        "Planet ABC123X"
-      end
+      attr_reader :name, :description
 
-      def event_description
-        "A desolate planet without any signs of life. (?)"
+      def initialize
+        @name = "Planet ABC123X"
+        @description = "A desolate planet without any signs of life. (?)"
       end
 
       def perform_event_actions(ship:)

@@ -2,12 +2,11 @@ module FasterThanLight
   module Events
     class ShopEvent < BaseEvent
 
-      def event_name
-        "Shop Hedys"
-      end
+      attr_reader :name, :description
 
-      def event_description
-        "The best shop in the quadrant."
+      def initialize
+        @name = "Shop Hedys"
+        @description = "The best shop in the quadrant."
       end
 
       def perform_event_actions(ship:)
