@@ -2,12 +2,13 @@ module FasterThanLight
   module Events
     class ShipEvent < BaseEvent
 
-      attr_reader :name, :description, :weapon, :health
+      attr_reader :name, :description, :weapon, :engine, :health
 
       def initialize
         @name = "Enemy Frigate Zebulon"
         @description = "A strong and sturdy ship made out of carbon composite."
         @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: 1)
+        @engine = Components::Engine.new(engine_type: "Nuclear", engine_str: 3)
         @health = 3
       end
 

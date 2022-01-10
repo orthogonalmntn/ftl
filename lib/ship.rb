@@ -1,13 +1,14 @@
 module FasterThanLight
   class Ship
 
-    attr_reader :fuel, :position, :health, :scrap, :weapon
+    attr_reader :fuel, :position, :health, :scrap, :weapon, :engine
 
     def initialize(sector_graph: SectorGraph.new)
       @fuel = 10
       @health = 10
       @scrap = 10
       @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: 3)
+      @engine = Components::Engine.new(engine_type: "Nuclear", engine_str: 5)
       @sector_graph = sector_graph.graph
       @position = sector_graph.graph.keys.first
     end

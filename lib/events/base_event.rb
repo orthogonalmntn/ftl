@@ -15,8 +15,7 @@ module FasterThanLight
       EventResponse = Struct.new(*EVENT_ACTION_KEYS, :action_resolver, keyword_init: true)
 
       def resolve_event!(ship:)
-        puts "You have stumbled onto: #{name}"
-        puts description
+        puts "You have stumbled onto: #{name}\n#{description}"
         perform_event_actions(ship: ship)
       end
 
