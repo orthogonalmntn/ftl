@@ -5,13 +5,11 @@ module FasterThanLight
       attr_reader :name, :description
 
       def initialize
-        @name = "Planet ABC123X"
-        @description = "A desolate planet without any signs of life. (?)"
+        @name = generate_name
+        @description = generate_description
       end
 
       def perform_event_actions(ship:)
-        event_action_text
-
         input = display(
           phrase: "Explore or avoid?",
           choices: ["E", "A"],
@@ -29,8 +27,24 @@ module FasterThanLight
 
       private
 
-      def event_action_text
-        puts "You waste some fuel caught in the planet's gravity."
+      def generate_name
+        names = [
+          'Planet X',
+          'Planet Y',
+          'Planet Z'
+        ]
+
+        names[rand(names.length)]
+      end
+
+      def generate_description
+        descriptions = [
+          'A dry planet with no signs of life',
+          'An ocean planet with shiny sun-streaks on its massive waves',
+          'Rocky world, with scattered signs of primitive civilization'
+        ]
+
+        descriptions[rand(descriptions.length)]
       end
 
     end

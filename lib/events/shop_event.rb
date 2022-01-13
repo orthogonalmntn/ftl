@@ -5,13 +5,11 @@ module FasterThanLight
       attr_reader :name, :description
 
       def initialize
-        @name = "Shop Hedys"
-        @description = "The best shop in the quadrant."
+        @name = generate_name
+        @description = generate_description
       end
 
       def perform_event_actions(ship:)
-        event_action_text
-
         input = display(
           phrase: "Buy fuel or leave?",
           choices: ["B", "L"],
@@ -29,8 +27,24 @@ module FasterThanLight
 
       private
 
-      def event_action_text
-        puts "You tank some fuel from the shop."
+      def generate_name
+        names = [
+          'Hedys Shop',
+          'Tin X',
+          'Veeropulos'
+        ]
+
+        names[rand(names.length)]
+      end
+
+      def generate_description
+        descriptions = [
+          'A small shop with not much in the way of exotic merchandise',
+          'Big, expensive shop',
+          'The only shop in this sector'
+        ]
+
+        descriptions[rand(descriptions.length)]
       end
 
     end
