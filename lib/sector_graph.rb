@@ -24,11 +24,11 @@ module FasterThanLight
 
     def randomly_generated_event
       case random(10)
-      when 1
+      when 1..3
         Events::PlanetEvent.new
-      when 2
+      when 4..5
         Events::ShopEvent.new
-      when 3..10
+      when 6..10
         Events::ShipEvent.new
       when 11
         nil
