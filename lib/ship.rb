@@ -1,27 +1,26 @@
 module FasterThanLight
   class Ship
 
-    attr_reader :fuel, :position, :health, :scrap, :weapon, :engine
+    attr_reader :fuel, :health, :scrap, :weapon, :engine
 
-    def initialize(sector_graph: SectorGraph.new)
+    def initialize(sector_graph:)
       @fuel = 10
       @health = 10
       @scrap = 10
       @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: 3)
       @engine = Components::Engine.new(engine_type: "Nuclear", engine_str: 5)
-      @sector_graph = sector_graph.graph
-      @position = sector_graph.graph.keys.first
+      @current_node = sector_graph.start_node
     end
 
-    def move_ship_to_new_position!
+    def move_ship_to_new_position!(input)
       return if final_position?
 
-      @position = @sector_graph.keys[@position + 1]
+      @current_node = @current_node.nodes[(input - 1)]
       @fuel -= 1
     end
 
     def event!
-      if event = @sector_graph[@position]
+      if event = @current_node.event
         event_response = event.resolve_event!(ship: self)
         handle_event_response(event_response)
       else
@@ -31,13 +30,13 @@ module FasterThanLight
 
     def display_dashboard
       puts "[---------------------------------]"
-      puts "CURRENT POSITION: #{position}"
+      puts "CURRENT POSITION: #{@current_node.position}"
       puts "FUEL: #{fuel} / HEALTH: #{health} / SCRAP: #{scrap}"
       puts "[---------------------------------]"
     end
 
     def final_position?
-      @position == @sector_graph.keys.last
+      @current_node.last?
     end
 
     def empty_fuel?

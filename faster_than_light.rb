@@ -4,9 +4,12 @@ Dir[File.join(__dir__, 'lib', '**', '*.rb')].each { |file| require_relative file
 require 'pry'
 
 module FasterThanLight
-  print "Generating new galactic sector..."
-  sector_graph = SectorGraph.new
-  ship = Ship.new(sector_graph: sector_graph)
+  size = 10
+  width = 3
+
+  print "Generating new galactic sector of size #{size} and width #{width}..."
+  graph = Graph::Graph.new(size, width)
+  ship = Ship.new(sector_graph: graph)
   puts "Done!"
 
   loop do
@@ -23,12 +26,12 @@ module FasterThanLight
     end
 
     input = Helpers::UserInput.display(
-      phrase: "Move to next position?",
-      choices: ["y", "quit"]
+      phrase: "Which position to move to [1, 2, 3]?",
+      choices: ["1", "2", "3", "quit"]
     )
     break if input == "quit"
 
-    ship.move_ship_to_new_position!
+    ship.move_ship_to_new_position!(input.to_i)
   end
 
 end
