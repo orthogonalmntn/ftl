@@ -2,7 +2,8 @@ module FasterThanLight
   module Events
     class BaseEvent
 
-      include Helpers::UserInput
+      include Helpers::UserInput,
+        Helpers::Math
 
       EVENT_ACTION_KEYS = [
         :fuel_gain,

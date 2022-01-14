@@ -2,8 +2,6 @@ module FasterThanLight
   module Events
     class ShipEvent < BaseEvent
 
-      include Helpers::Math
-
       attr_reader :name, :description, :weapon, :engine, :health
 
       def initialize

@@ -2,11 +2,12 @@ module FasterThanLight
   module Events
     class PlanetEvent < BaseEvent
 
-      attr_reader :name, :description
+      attr_reader :name, :description, :gravity_str
 
       def initialize
         @name = generate_name
         @description = generate_description
+        @gravity_str = random(7)
       end
 
       def perform_event_actions(ship:)

@@ -4,7 +4,13 @@ module FasterThanLight
 
       def call
         if event_details[:explore]
-          fuel_loss = 2 # can be calculated based on Planet's Gravity
+          puts "The planet has a gravity field of strength #{event.gravity_str}"
+
+          if ship.engine.str > event.gravity_str
+            fuel_loss = rand(1)
+          else
+            fuel_loss = random(3)
+          end
           scrap_gain = random(3)
         else
           fuel_loss = 1
