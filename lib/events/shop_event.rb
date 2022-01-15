@@ -10,7 +10,7 @@ module FasterThanLight
       end
 
       def perform_event_actions(ship:)
-        input = display(
+        input = get_input(
           phrase: "Buy fuel or leave?",
           choices: ["B", "L"],
         )

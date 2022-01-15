@@ -2,7 +2,7 @@ module Helpers
   module UserInput
     module_function
 
-    def display(phrase:, choices:)
+    def get_input(phrase:, choices:)
       loop do
         print "#{phrase} [#{choices.join('/')}] => "
         user_input = gets.chomp

@@ -13,7 +13,7 @@ module FasterThanLight
       end
 
       def perform_event_actions(ship:)
-        input = display(
+        input = get_input(
           phrase: "Fight or avoid?",
           choices: ["F", "A"],
         )

@@ -20,7 +20,7 @@ module FasterThanLight
           break
         end
 
-        input = display(
+        input = get_input(
           phrase: "Which position to move to [1, 2, 3]?",
           choices: ["1", "2", "3", "quit"]
         )
