@@ -12,26 +12,5 @@ module FasterThanLight
   ship = Ship.new(sector_graph: graph)
   puts "Done!"
 
-  loop do
-    ship.display_dashboard
-    ship.event!
-    ship.display_dashboard
-
-    if ship.final_position? && !ship.empty_fuel? && !ship.destroyed?
-      puts "Game Won!"
-      break
-    elsif ship.empty_fuel? || ship.destroyed? || ship.final_position?
-      puts "Game lost! :-("
-      break
-    end
-
-    input = Helpers::UserInput.display(
-      phrase: "Which position to move to [1, 2, 3]?",
-      choices: ["1", "2", "3", "quit"]
-    )
-    break if input == "quit"
-
-    ship.move_ship_to_new_position!(input.to_i)
-  end
-
+  Game.new(ship).run!
 end
