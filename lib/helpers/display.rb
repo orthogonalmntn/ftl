@@ -5,30 +5,24 @@ module Helpers
     # For methods related to pretty displaying of information on screen
     # https://stackoverflow.com/questions/1489183/how-can-i-use-ruby-to-colorize-the-text-output-to-a-terminal
 
+    COLORS_AND_CODES = {
+      "red" => 31,
+      "green" => 32,
+      "yellow" => 33,
+      "blue" => 34,
+      "light_blue" => 36,
+    }
+
     def wrap_with_chars(char = '-')
       50.times { print char }; puts
       yield
       50.times { print char }; puts
     end
 
-    def in_red(str)
-      "\e[31m#{str}\e[0m"
-    end
-
-    def in_green(str)
-      "\e[32m#{str}\e[0m"
-    end
-
-    def in_yellow(str)
-      "\e[33m#{str}\e[0m"
-    end
-
-    def in_blue(str)
-      "\e[34m#{str}\e[0m"
-    end
-
-    def in_light_blue(str)
-      "\e[36m#{str}\e[0m"
+    COLORS_AND_CODES.each_pair do |color, code|
+      define_method "in_#{color}" do |arg|
+        "\e[#{code}m#{arg}\e[0m"
+      end
     end
 
     # below this the end-codes are different
