@@ -47,13 +47,13 @@ module FasterThanLight
       end
 
       def show_outcome_of_combat(combat_stats)
-        puts "------------------------"
-        puts "In combat with #{event.name} / T: #{event.weapon.str} H: #{event.health}"
-        puts "You deal: #{combat_stats.event_damage}"
-        puts "Damage gotten: #{combat_stats.ship_damage}"
-        puts "Fuel lost: #{combat_stats.fuel_loss}"
-        puts "Scrap gained: #{combat_stats.scrap_gain}"
-        puts "------------------------"
+        wrap_with_chars do
+          puts "In combat with #{in_red event.name} / T: #{event.weapon.str} H: #{event.health}"
+          puts "You deal: #{in_green combat_stats.event_damage}"
+          puts "Damage gotten: #{in_red combat_stats.ship_damage}"
+          puts "Fuel lost: #{in_red combat_stats.fuel_loss}"
+          puts "Scrap gained: #{in_green combat_stats.scrap_gain}"
+        end
       end
 
     end

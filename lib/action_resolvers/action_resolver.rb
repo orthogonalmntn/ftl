@@ -2,7 +2,8 @@ module FasterThanLight
   module ActionResolvers
     class ActionResolver
 
-      include Helpers::Math
+      include Helpers::Math,
+        Helpers::Display
 
       attr_reader :ship, :event, :event_details
 

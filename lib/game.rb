@@ -1,19 +1,20 @@
 module FasterThanLight
   class Game
 
-    include Helpers::UserInput
+    include Helpers::UserInput,
+      Helpers::Display
 
     def initialize(ship)
       @ship = ship
     end
 
     def run!
-      @ship.display_dashboard
+      display_dashboard
 
       # main game loop
       loop do
         @ship.event!
-        @ship.display_dashboard
+        display_dashboard
 
         if game_result_check = game_over?
           puts game_result_check
@@ -34,12 +35,19 @@ module FasterThanLight
 
     def game_over?
       if @ship.final_position? && !@ship.empty_fuel? && !@ship.destroyed?
-        return "Game won!"
+        return in_green "Game won!"
       elsif @ship.empty_fuel? || @ship.destroyed? || @ship.final_position?
-        return "Game over! :-("
+        return in_red "Game over! :-("
       end
 
       return false
+    end
+
+    def display_dashboard
+      wrap_with_chars do
+        puts in_light_blue "CURRENT POSITION: #{@ship.position}"
+        puts in_light_blue "FUEL: #{@ship.fuel} / HEALTH: #{@ship.health} / SCRAP: #{@ship.scrap}"
+      end
     end
 
   end

@@ -1,7 +1,7 @@
 module FasterThanLight
   class Ship
 
-    attr_reader :fuel, :health, :scrap, :weapon, :engine
+    attr_reader :fuel, :health, :scrap, :weapon, :engine, :position
 
     def initialize(sector_graph:)
       @fuel = 10
@@ -28,11 +28,8 @@ module FasterThanLight
       end
     end
 
-    def display_dashboard
-      puts "[---------------------------------]"
-      puts "CURRENT POSITION: #{@current_node.position}"
-      puts "FUEL: #{fuel} / HEALTH: #{health} / SCRAP: #{scrap}"
-      puts "[---------------------------------]"
+    def position
+      @current_node.position
     end
 
     def final_position?

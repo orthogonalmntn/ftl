@@ -27,17 +27,17 @@ module FasterThanLight
         evastion_roll = ship.engine.str > event.engine.str ? random(3) : random(10)
 
         if evastion_roll == 1
-          puts "You have managed to avoid the enemy ship."
+          puts in_yellow "You have managed to avoid the enemy ship."
           return true
         else
-          puts "You haven't avoided the enemy ship!"
+          puts in_red "You haven't avoided the enemy ship!"
           return false
         end
       end
 
       def show_outcome_of_avoidance(ship_damage, fuel_loss)
-        puts "Damage gotten: #{ship_damage}"
-        puts "Fuel lost: #{fuel_loss}"
+        puts "Damage gotten: #{in_red(ship_damage)}"
+        puts "Fuel lost: #{in_red(fuel_loss)}"
       end
 
     end

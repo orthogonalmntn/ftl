@@ -12,7 +12,7 @@ module FasterThanLight
           scrap_loss = 0
         end
 
-        puts "You have bought #{fuel_gain} fuel, and lost #{scrap_loss} scrap."
+        puts "You have bought #{in_green fuel_gain} fuel, and lost #{in_red scrap_loss} scrap."
         ActionOutcome.new(fuel_gain: fuel_gain, scrap_loss: scrap_loss)
       end
 
