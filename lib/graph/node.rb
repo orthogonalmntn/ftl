@@ -2,7 +2,8 @@ module FasterThanLight
   module Graph
     class Node
 
-      attr_reader :nodes, :position, :event
+      attr_reader :nodes, :position
+      attr_accessor :event
 
       def initialize(position:)
         @nodes = []

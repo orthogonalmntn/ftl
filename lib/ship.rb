@@ -37,6 +37,10 @@ module FasterThanLight
       if event = @current_node.event
         event_response = event.resolve_event!(ship: self)
         handle_event_response(event_response)
+
+        # destroy already-passed event:
+        #   -> maybe we should allow some events to exist a while longer (e.g. planets?)
+        @current_node.event = nil
       else
         puts "There seems to be nothing here."
       end
