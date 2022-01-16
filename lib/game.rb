@@ -6,6 +6,7 @@ module FasterThanLight
 
     def initialize(ship)
       @ship = ship
+      @map = Map.new
     end
 
     def run!
@@ -21,13 +22,17 @@ module FasterThanLight
           break
         end
 
+        @map.display_map(@ship.position)
+
         input = get_input(
           phrase: "Which position to move to [1, 2, 3]?",
           choices: ["1", "2", "3", "quit"]
         )
         break if input == "quit"
+        input = input.to_i
 
-        @ship.move_ship_to_new_position!(input.to_i)
+        @map.add_next_node(@ship.position, input)
+        @ship.move_ship_to_new_position!(input)
       end
     end
 

@@ -11,18 +11,19 @@ module Helpers
       "yellow" => 33,
       "blue" => 34,
       "light_blue" => 36,
+      "gray" => 37,
     }
-
-    def wrap_with_chars(char = '-')
-      50.times { print char }; puts
-      yield
-      50.times { print char }; puts
-    end
 
     COLORS_AND_CODES.each_pair do |color, code|
       define_method "in_#{color}" do |arg|
         "\e[#{code}m#{arg}\e[0m"
       end
+    end
+
+    def wrap_with_chars(char = '-')
+      50.times { print char }; puts
+      yield
+      50.times { print char }; puts
     end
 
     # below this the end-codes are different
