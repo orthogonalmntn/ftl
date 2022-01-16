@@ -26,8 +26,8 @@ module FasterThanLight
       puts " / | \\"
       # Visited nodes are displayed in gray
       # Non-visited nodes are displayed in green
-      1..3.times do |t|
-        if visited_nodes.include?(t)
+      (1..3).each do |n|
+        if visited_nodes.include?(n)
           print "#{in_gray 'o'}"
         else
           print "#{in_light_blue 'o'}"
