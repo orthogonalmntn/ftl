@@ -10,12 +10,26 @@ module FasterThanLight
       @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: 3)
       @engine = Components::Engine.new(engine_type: "Nuclear", engine_str: 5)
       @current_node = sector_graph.start_node
+      @previous_nodes = [@current_node]
     end
 
     def move_ship_to_new_position!(input)
       return if final_position?
 
-      @current_node = @current_node.nodes[(input - 1)]
+      if input == 0
+        if first_position?
+          puts "Can't go back any further!"
+          return
+        else
+          # go back one node
+          @current_node = @previous_nodes.last
+          @previous_nodes -= [@previous_nodes.last]
+        end
+      else
+        @previous_nodes << @current_node
+        @current_node = @current_node.nodes[(input - 1)]
+      end
+
       @fuel -= 1
     end
 
@@ -34,6 +48,10 @@ module FasterThanLight
 
     def final_position?
       @current_node.last?
+    end
+
+    def first_position?
+      position == 1
     end
 
     def empty_fuel?

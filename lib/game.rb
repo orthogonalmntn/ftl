@@ -25,8 +25,8 @@ module FasterThanLight
         @map.display_map(@ship.position)
 
         input = get_input(
-          phrase: "Which position to move to [1, 2, 3]?",
-          choices: ["1", "2", "3", "quit"]
+          phrase: "Which position to move to [1, 2, 3, 0 (Go Back)]?",
+          choices: ["0", "1", "2", "3", "quit"]
         )
         break if input == "quit"
         input = input.to_i
