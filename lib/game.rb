@@ -7,6 +7,7 @@ module FasterThanLight
     def initialize(ship)
       @ship = ship
       @map = Map.new
+      @score = 0
     end
 
     def run!
@@ -19,20 +20,18 @@ module FasterThanLight
 
         if game_result_check = game_over?
           puts game_result_check
+          puts "Your score is: #{in_green calculated_user_score}"
           break
         end
 
         @map.display_map(@ship.position)
 
-        input = get_input(
-          phrase: "Which position to move to [1, 2, 3, 0 (Go Back)]?",
-          choices: ["0", "1", "2", "3", "quit"]
-        )
-        break if input == "quit"
-        input = input.to_i
+        input = get_user_input
+        break if input == -1
 
         @map.add_next_node(@ship.position, input)
         @ship.move_ship_to_new_position!(input)
+        @score += 10
       end
     end
 
@@ -48,11 +47,28 @@ module FasterThanLight
       return false
     end
 
+    def get_user_input
+      input = get_input(
+        phrase: "Which position to move to [1, 2, 3, 0 (Go Back)]?",
+        choices: ["0", "1", "2", "3", "quit"]
+      )
+      return -1 if input == "quit"
+
+      input.to_i
+    end
+
     def display_dashboard
       wrap_with_chars do
         puts in_light_blue "CURRENT POSITION: #{@ship.position}"
         puts in_light_blue "FUEL: #{@ship.fuel} / HEALTH: #{@ship.health} / SCRAP: #{@ship.scrap}"
       end
+    end
+
+    def calculated_user_score
+      @score + 
+        (@ship.scrap * 0.8) +
+        (@ship.fuel > 0 ? @ship.fuel * 2 : 0) +
+        (@ship.health > 0 ? @ship.health * 2 : 0)
     end
 
   end
