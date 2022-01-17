@@ -60,7 +60,9 @@ module FasterThanLight
     def display_dashboard
       wrap_with_chars do
         puts in_light_blue "CURRENT POSITION: #{@ship.position}"
-        puts in_light_blue "FUEL: #{@ship.fuel} / HEALTH: #{@ship.health} / SCRAP: #{@ship.scrap}"
+        print "FUEL: #{based_on_amount @ship.fuel} / "
+        print "HEALTH: #{based_on_amount @ship.health} / "
+        puts "SCRAP: #{based_on_amount @ship.scrap}"
       end
     end
 

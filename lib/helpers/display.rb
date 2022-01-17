@@ -37,5 +37,16 @@ module Helpers
       "\e[3m#{str}\e[23m"
     end
 
+    def based_on_amount(val)
+      case
+      when val <= 3
+        self.in_red val
+      when val <= 7
+        self.in_yellow val
+      when val > 7
+        self.in_green val
+      end
+    end
+
   end
 end
