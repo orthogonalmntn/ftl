@@ -13,9 +13,10 @@ module FasterThanLight
         :fuel_gain,
         :scrap_loss,
         :scrap_gain,
+        :health_gain,
       ]
 
-      ActionOutcome = Struct.new(*ACTION_OUTCOME_KEYS, keyword_init: true)
+      ActionOutcome = Struct.new(:success?, *ACTION_OUTCOME_KEYS, keyword_init: true)
 
       def initialize(ship:, event:, event_details: nil)
         @ship = ship

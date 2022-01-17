@@ -10,19 +10,27 @@ module FasterThanLight
       end
 
       def perform_event_actions(ship:)
-        input = get_input(
-          phrase: "Buy fuel or leave?",
-          choices: ["B", "L"],
-        )
+        loop do
+          input = get_input(
+            phrase: "Buy fuel, repair ship, or leave?",
+            choices: ["B", "R", "L"],
+          )
 
-        outcome = case input
-                  when "B"
-                    ActionResolvers::ShopResolver.call(ship: ship, event: self, event_details: { purchase: true })
-                  when "L"
-                    ActionResolvers::ShopResolver.call(ship: ship, event: self, event_details: { purchase: false })
-                  end
+          outcome = case input
+                    when "B"
+                      ActionResolvers::ShopResolver.call(ship: ship, event: self, event_details: { purchase: :fuel })
+                    when "R"
+                      ActionResolvers::ShopResolver.call(ship: ship, event: self, event_details: { purchase: :repair })
+                    when "L"
+                      return
+                    end
 
-        EventResponse.new(fuel_gain: outcome.fuel_gain, scrap_loss: outcome.scrap_loss)
+          if outcome.success?
+            return EventResponse.new(fuel_gain: outcome.fuel_gain, health_gain: outcome.health_gain, scrap_loss: outcome.scrap_loss)
+          else
+            puts "You are unable to complete this action"
+          end
+        end
       end
 
       private

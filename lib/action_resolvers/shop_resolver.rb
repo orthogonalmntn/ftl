@@ -3,17 +3,21 @@ module FasterThanLight
     class ShopResolver < ActionResolver
 
       def call
-        if event_details[:purchase] && ship.scrap > 0
-          # TODO: add more items to purchase
+        case event_details[:purchase]
+        when :fuel
+          return ActionOutcome.new(success?: false) unless ship.scrap > 3
+
           fuel_gain = 1
-          scrap_loss = 1
-        else
-          fuel_gain = 0
-          scrap_loss = 0
+          scrap_loss = 3
+        when :repair
+          return ActionOutcome.new(success?: false) unless ship.scrap > 3 && ship.health <= 9
+
+          health_gain = ship.health < 9 ? 2 : 1
+          scrap_loss = 3
         end
 
         puts "You have bought #{in_green fuel_gain} fuel, and lost #{in_red scrap_loss} scrap."
-        ActionOutcome.new(fuel_gain: fuel_gain, scrap_loss: scrap_loss)
+        ActionOutcome.new(success?: true, fuel_gain: fuel_gain, health_gain: health_gain, scrap_loss: scrap_loss)
       end
 
     end

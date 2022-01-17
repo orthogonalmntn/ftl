@@ -11,6 +11,7 @@ module FasterThanLight
         :ship_damage,
         :scrap_gain,
         :scrap_loss,
+        :health_gain,
       ]
 
       EventResponse = Struct.new(*EVENT_ACTION_KEYS, :action_resolver, keyword_init: true)
