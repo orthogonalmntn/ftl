@@ -5,10 +5,11 @@ module FasterThanLight
       attr_reader :nodes, :position
       attr_accessor :event
 
-      def initialize(position:)
+      def initialize(position:, generator:)
         @nodes = []
-        @event = generate_random_event
+        @event = generator.generate_event
         @position = position
+        @generator = generator
       end
 
       def add_node(input)
@@ -18,21 +19,6 @@ module FasterThanLight
 
       def last?
         nodes.empty?
-      end
-
-      private
-
-      def generate_random_event
-        case rand(100)
-        when 0..19
-          Events::PlanetEvent.new
-        when 20..35
-          Events::ShopEvent.new
-        when 36..70
-          Events::ShipEvent.new
-        when 70..100
-          nil
-        end
       end
 
     end
