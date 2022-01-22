@@ -4,9 +4,9 @@ module FasterThanLight
 
       attr_reader :name, :description
 
-      def initialize
-        @name = generate_name
-        @description = generate_description
+      def initialize(name, description)
+        @name = name
+        @description = description
       end
 
       def perform_event_actions(ship:)
@@ -31,28 +31,6 @@ module FasterThanLight
             puts "You are unable to complete this action"
           end
         end
-      end
-
-      private
-
-      def generate_name
-        names = [
-          'Hedys Shop',
-          'Tin X',
-          'Veeropulos'
-        ]
-
-        names[rand(names.length)]
-      end
-
-      def generate_description
-        descriptions = [
-          'A small shop with not much in the way of exotic merchandise',
-          'Big, expensive shop',
-          'The only shop in this sector'
-        ]
-
-        descriptions[rand(descriptions.length)]
       end
 
     end

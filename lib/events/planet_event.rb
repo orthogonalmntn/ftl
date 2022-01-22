@@ -4,9 +4,9 @@ module FasterThanLight
 
       attr_reader :name, :description, :gravity_str
 
-      def initialize
-        @name = generate_name
-        @description = generate_description
+      def initialize(name, description)
+        @name = name
+        @description = description
         @gravity_str = random(7)
       end
 
@@ -24,28 +24,6 @@ module FasterThanLight
                   end
 
         EventResponse.new(fuel_loss: outcome.fuel_loss, scrap_gain: outcome.scrap_gain)
-      end
-
-      private
-
-      def generate_name
-        names = [
-          'Planet X',
-          'Planet Y',
-          'Planet Z'
-        ]
-
-        names[rand(names.length)]
-      end
-
-      def generate_description
-        descriptions = [
-          'A dry planet with no signs of life',
-          'An ocean planet with shiny sun-streaks on its massive waves',
-          'Rocky world, with scattered signs of primitive civilization'
-        ]
-
-        descriptions[rand(descriptions.length)]
       end
 
     end
