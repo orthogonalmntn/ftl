@@ -8,7 +8,7 @@ module FasterThanLight
       @health = 10
       @scrap = 10
       @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: 3)
-      @engine = Components::Engine.new(engine_type: "Nuclear", engine_str: 5)
+      @engine = Components::Engine.new
       @current_node = sector_graph.start_node
       @previous_nodes = [@current_node]
     end

@@ -8,7 +8,7 @@ module FasterThanLight
         @name = name
         @description = description
         @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: random(3))
-        @engine = Components::Engine.new(engine_type: "Nuclear", engine_str: random(5))
+        @engine = Components::Engine.new
         @health = random(5)
       end
 
