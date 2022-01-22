@@ -5,7 +5,7 @@ describe FasterThanLight::Generators::LocalGenerator do
     subject { described_class.new.generate_planet }
 
     it "creates a new planet event" do
-      expect(subject).to be_kind_of(FasterThanLight::Events::PlanetEvent)
+      expect(subject).to be_an_instance_of(FasterThanLight::Events::PlanetEvent)
     end
 
     it "generates a planet name" do
@@ -21,7 +21,7 @@ describe FasterThanLight::Generators::LocalGenerator do
     subject { described_class.new.generate_shop }
 
     it "creates a new shop event" do
-      expect(subject).to be_kind_of(FasterThanLight::Events::ShopEvent)
+      expect(subject).to be_an_instance_of(FasterThanLight::Events::ShopEvent)
     end
 
     it "generates a shop name" do
@@ -37,7 +37,7 @@ describe FasterThanLight::Generators::LocalGenerator do
     subject { described_class.new.generate_ship }
 
     it "creates a new ship event" do
-      expect(subject).to be_kind_of(FasterThanLight::Events::ShipEvent)
+      expect(subject).to be_an_instance_of(FasterThanLight::Events::ShipEvent)
     end
 
     it "generates a ship name" do
