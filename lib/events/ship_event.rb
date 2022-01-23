@@ -7,8 +7,8 @@ module FasterThanLight
       def initialize(name, description)
         @name = name
         @description = description
-        @weapon = Components::Weapon.new(weapon_type: "Torpedo", weapon_str: random(3))
-        @engine = Components::Engine.new
+        @weapon = Components::Weapon.new # make random / more difficult down the tree
+        @engine = Components::Engine.new # make random / more difficult down the tree
         @health = random(5)
       end
 

@@ -31,7 +31,7 @@ module FasterThanLight
       wrap_with_chars do
         puts in_light_blue "ENGINEERING BAY"
         puts "SHIP ENGINES: #{@ship.engine.type.capitalize} / #{@ship.engine.str}"
-        puts "SHIP WEAPONS: #{@ship.weapon.type} / #{@ship.weapon.str}"
+        puts "SHIP WEAPONS: #{@ship.weapon.type.capitalize} / #{@ship.weapon.str}"
       end
     end
 
