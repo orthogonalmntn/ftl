@@ -7,6 +7,7 @@ module FasterThanLight
     def initialize(ship)
       @ship = ship
       @map = Map.new
+      @engineering_bay = EngineeringBay.new(@ship)
       @score = 0
     end
 
@@ -29,6 +30,11 @@ module FasterThanLight
         input = get_user_input
         break if input == -1
 
+        if input == "E"
+          @engineering_bay.visit!
+          next
+        end
+
         @map.add_next_node(@ship.position, input)
         @ship.move_ship_to_new_position!(input)
         @score += 10
@@ -49,10 +55,11 @@ module FasterThanLight
 
     def get_user_input
       input = get_input(
-        phrase: "Which position to move to [1, 2, 3, 0 (Go Back)]?",
-        choices: ["0", "1", "2", "3", "quit"]
+        phrase: "Which position to move to [1, 2, 3, 0 (Go Back), E (Engineering)]?",
+        choices: ["0", "1", "2", "3", "E", "quit"]
       )
       return -1 if input == "quit"
+      return "E" if input == "E"
 
       input.to_i
     end

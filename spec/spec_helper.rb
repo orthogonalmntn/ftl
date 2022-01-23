@@ -1,6 +1,7 @@
 Dir[File.join(__dir__, '..', 'lib', 'helpers', '*.rb')].each { |file| require_relative file }
 Dir[File.join(__dir__, '..', 'lib', 'events', '*.rb')].each { |file| require_relative file }
 Dir[File.join(__dir__, '..', 'lib', '**', '*.rb')].each { |file| require_relative file }
+require 'pry'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
