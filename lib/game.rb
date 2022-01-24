@@ -28,7 +28,7 @@ module FasterThanLight
         @map.display_map(@ship.position)
 
         input = get_user_input
-        break if input == -1
+        break if input == "quit"
 
         if input == "E"
           action_outcome = @engineering_bay.visit!
@@ -36,6 +36,12 @@ module FasterThanLight
           next
         end
 
+        if input == "M"
+          @map.display_entire_map(current_position: @ship.position)
+          next
+        end
+
+        input = input.to_i
         @map.add_next_node(@ship.position, input)
         @ship.move_ship_to_new_position!(input)
         @score += 10
@@ -55,14 +61,10 @@ module FasterThanLight
     end
 
     def get_user_input
-      input = get_input(
+      get_input(
         phrase: "Which position to move to [1, 2, 3, 0 (Go Back), E (Engineering)]?",
-        choices: ["0", "1", "2", "3", "E", "quit"]
+        choices: ["0", "1", "2", "3", "E", "M", "quit"]
       )
-      return -1 if input == "quit"
-      return "E" if input == "E"
-
-      input.to_i
     end
 
     def display_dashboard
