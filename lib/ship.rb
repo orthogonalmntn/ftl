@@ -36,7 +36,7 @@ module FasterThanLight
     def event!
       if event = @current_node.event
         event_response = event.resolve_event!(ship: self)
-        handle_event_response(event_response) if event_response
+        handle_event_response(event_response)
 
         # destroy already-passed event:
         #   -> maybe we should allow some events to exist a while longer (e.g. planets?)
@@ -66,9 +66,9 @@ module FasterThanLight
       @health <= 0
     end
 
-    private
-
     def handle_event_response(event_response)
+      return unless event_response
+
       # Fuel
       @fuel += event_response.fuel_gain if event_response.fuel_gain
       @fuel -= event_response.fuel_loss if event_response.fuel_loss
@@ -81,6 +81,7 @@ module FasterThanLight
       @health += event_response.health_gain if event_response.health_gain
       @health -= event_response.ship_damage if event_response.ship_damage
     end
+    alias_method :handle_outcome, :handle_event_response
 
   end
 end

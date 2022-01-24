@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe FasterThanLight::EngineeringBay do
   context "when visiting Engineering Bay" do
-    let(:engine) { double("Engine", type: :thruster, str: 1) }
-    let(:weapon) { double("Weapon", type: :torpedo, str: 1) }
+    let(:is_max_level) { false }
+    let(:level) { 1 }
+    let(:engine) { double("Engine", type: :thruster, str: 1, :max_level? => is_max_level, level: level) }
+    let(:weapon) { double("Weapon", type: :torpedo, str: 1, :max_level? => is_max_level, level: level) }
     let(:ship) { double("Ship", scrap: scrap, engine: engine, weapon: weapon) }
     let(:engineering_bay) { described_class.new(ship) }
 
@@ -23,6 +25,9 @@ describe FasterThanLight::EngineeringBay do
         it "upgrades engines" do
           subject
           expect(engine).to have_received(:upgrade!)
+        end
+
+        it "returns a ship handler object" do
         end
       end
 
@@ -52,6 +57,9 @@ describe FasterThanLight::EngineeringBay do
         it "upgrades weapons" do
           subject
           expect(weapon).to have_received(:upgrade!)
+        end
+
+        it "returns a ship handler object" do
         end
       end
 

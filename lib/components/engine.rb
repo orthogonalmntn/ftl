@@ -2,7 +2,7 @@ module FasterThanLight
   module Components
     class Engine
 
-      attr_reader :type, :str
+      attr_reader :type, :str, :level
 
       ENGINE_LEVELS = {
         1 => { type: :thruster, max_str: 3 },
@@ -15,16 +15,20 @@ module FasterThanLight
       def initialize(engine_level: 1)
         @type = engine_type_from(engine_level)
         @str = engine_str_from(engine_level)
+        @level = engine_level
       end
 
       def upgrade!
-        current_level = ENGINE_LEVELS.key(type: @type, max_str: @str)
-        return if current_level == ENGINE_LEVELS.keys.max
+        return if max_level?
 
-        next_level = current_level + 1
+        @level += 1
 
-        @type = ENGINE_LEVELS[next_level][:type]
-        @str = ENGINE_LEVELS[next_level][:max_str]
+        @type = ENGINE_LEVELS[@level][:type]
+        @str = ENGINE_LEVELS[@level][:max_str]
+      end
+
+      def max_level?
+        @level == ENGINE_LEVELS.keys.max
       end
 
       private

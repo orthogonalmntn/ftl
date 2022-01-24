@@ -31,7 +31,8 @@ module FasterThanLight
         break if input == -1
 
         if input == "E"
-          @engineering_bay.visit!
+          action_outcome = @engineering_bay.visit!
+          @ship.handle_outcome(action_outcome)
           next
         end
 
