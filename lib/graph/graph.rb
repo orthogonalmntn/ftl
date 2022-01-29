@@ -4,7 +4,7 @@ module FasterThanLight
 
       attr_reader :start_node
 
-      def initialize(size = 5, width = 3, generator = Generators::LocalGenerator.new)
+      def initialize(size = 5, width = 3, generator = Generators::FromFileGenerator.new)
         @start_node = generate_graph(size, width, generator)
       end
 

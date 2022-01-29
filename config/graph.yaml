@@ -1,0 +1,23 @@
+---
+:title: Graph Events
+:planets:
+- :name: Zambola
+  :description: A dry and dusty planet with no signs of life
+- :name: Mabol
+  :description: An ocean world with pockets of civilization
+- :name: Jupitus
+  :description: Gas giant with cloud cities floating in the skies
+:shops:
+- :name: Gas Shop
+  :description: Lots of merchandise
+- :name: Little Moonshop
+  :description: Small but cozy shop with all needed supplies
+- :name: Sectorix
+  :description: The largest chain of supplies in the entire galactic sector
+:ships:
+- :name: Galactica
+  :description: Study and mean ship
+- :name: Z-Wing
+  :description: Small but nimble fighter
+- :name: Enter Prize
+  :description: A ship twice the size of a normal cruiser

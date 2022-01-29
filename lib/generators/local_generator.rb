@@ -79,4 +79,3 @@ module FasterThanLight
     end
   end
 end
-
