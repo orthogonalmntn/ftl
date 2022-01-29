@@ -22,6 +22,8 @@ module FasterThanLight
         if game_result_check = game_over?
           puts game_result_check
           puts "Your score is: #{in_green calculated_user_score}"
+
+          Operations::StoreUserScore.call(score: calculated_user_score)
           break
         end
 
