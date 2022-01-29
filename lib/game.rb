@@ -77,10 +77,12 @@ module FasterThanLight
     end
 
     def calculated_user_score
-      @score + 
+      final_score = @score +
         (@ship.scrap * 0.8) +
         (@ship.fuel > 0 ? @ship.fuel * 2 : 0) +
         (@ship.health > 0 ? @ship.health * 2 : 0)
+
+      final_score.round(2)
     end
 
   end

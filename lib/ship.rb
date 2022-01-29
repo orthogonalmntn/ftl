@@ -4,7 +4,7 @@ module FasterThanLight
     attr_reader :fuel, :health, :scrap, :weapon, :engine, :position
 
     def initialize(sector_graph:)
-      @fuel = 10
+      @fuel = 10.0
       @health = 10
       @scrap = 10
       @weapon = Components::Weapon.new
@@ -70,8 +70,9 @@ module FasterThanLight
       return unless event_response
 
       # Fuel
-      @fuel += event_response.fuel_gain if event_response.fuel_gain
-      @fuel -= event_response.fuel_loss if event_response.fuel_loss
+      @fuel += inc_based_on_engines(event_response.fuel_gain) if event_response.fuel_gain
+      @fuel -= dec_based_on_engines(event_response.fuel_loss) if event_response.fuel_loss
+      @fuel = @fuel.round(2)
 
       # Scrap
       @scrap += event_response.scrap_gain if event_response.scrap_gain
@@ -83,5 +84,14 @@ module FasterThanLight
     end
     alias_method :handle_outcome, :handle_event_response
 
+    private
+
+    def inc_based_on_engines(val)
+      (val + val * (engine.str.to_f / 100)).round(3)
+    end
+
+    def dec_based_on_engines(val)
+      val - val * (engine.str.to_f / 10)
+    end
   end
 end

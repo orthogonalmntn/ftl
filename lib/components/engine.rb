@@ -7,9 +7,9 @@ module FasterThanLight
       ENGINE_LEVELS = {
         1 => { type: :thruster, max_str: 3 },
         2 => { type: :nuclear, max_str: 5 },
-        3 => { type: :ion, max_str: 7 },
-        4 => { type: :warp, max_str: 10 },
-        5 => { type: :dark_matter, max_str: 15 },
+        3 => { type: :ion, max_str: 6 },
+        4 => { type: :warp, max_str: 6.5 },
+        5 => { type: :dark_matter, max_str: 7.5 },
       }
 
       def initialize(engine_level: 1)
