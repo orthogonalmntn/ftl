@@ -1,5 +1,8 @@
+require "memoist"
+
 module FasterThanLight
   class Game
+    extend Memoist
 
     include Helpers::UserInput,
       Helpers::Display
@@ -78,7 +81,7 @@ module FasterThanLight
       end
     end
 
-    def calculated_user_score
+    memoize def calculated_user_score
       final_score = @score +
         (@ship.scrap * 0.8) +
         (@ship.fuel > 0 ? @ship.fuel * 2 : 0) +
