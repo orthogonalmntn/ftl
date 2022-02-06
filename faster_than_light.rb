@@ -5,11 +5,14 @@ Dir[File.join(__dir__, 'lib', '**', '*.rb')].each { |file| require_relative file
 require 'pry'
 
 module FasterThanLight
-  size = 10
+  size = 3
   width = 3
 
+  # TODO: Let user pick which Generator to use.
+  generator = Generators::MachineGenerator.new
+
   print "Generating new galactic sector of size #{size} and width #{width}..."
-  graph = Graph::Graph.new(size, width)
+  graph = Graph::Graph.new(size, width, generator)
   ship = Ship.new(sector_graph: graph)
   puts "Done!"
 
