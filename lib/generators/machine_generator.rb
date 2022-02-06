@@ -8,7 +8,7 @@ module FasterThanLight
       # Should reconsider using this generator on a step-by-step basis
       # i.e. generate the next 9 branches when the ship moves by 1 position
 
-      SERVICE_URL = "http://127.0.0.1:8000"
+      SERVICE_URL = "http://127.0.0.1:8000" # move to dotenv
 
       def generate_planet
         Events::PlanetEvent.new(*planet_from_generator)
@@ -24,28 +24,14 @@ module FasterThanLight
 
       private
 
-      def planet_from_generator
-        resp = conn.get("/planet")
+      ["planet", "ship", "shop"].each do |event|
+        define_method "#{event}_from_generator" do
+          resp = conn.get("/#{event}")
 
-        planet_name = resp.body["name"]
-        planet_description = resp.body["description"]
-        [planet_name, planet_description]
-      end
-
-      def ship_from_generator
-        resp = conn.get("/ship")
-
-        ship_name = resp.body["name"]
-        ship_description = resp.body["description"]
-        [ship_name, ship_description]
-      end
-
-      def shop_from_generator
-        resp = conn.get("/shop")
-
-        shop_name = resp.body["name"]
-        shop_description = resp.body["description"]
-        [shop_name, shop_description]
+          [resp.body["name"], resp.body["description"]]
+        rescue Faraday::ConnectionFailed => e
+          [nil, nil]
+        end
       end
 
       def conn
