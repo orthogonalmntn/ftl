@@ -1,8 +1,9 @@
+require 'pry'
+require 'dotenv/load'
 Dir[File.join(__dir__, 'lib', 'helpers', '*.rb')].each { |file| require_relative file }
 Dir[File.join(__dir__, 'lib', 'operations', '*.rb')].each { |file| require_relative file }
 Dir[File.join(__dir__, 'lib', 'events', '*.rb')].each { |file| require_relative file }
 Dir[File.join(__dir__, 'lib', '**', '*.rb')].each { |file| require_relative file }
-require 'pry'
 
 module FasterThanLight
   size = 3

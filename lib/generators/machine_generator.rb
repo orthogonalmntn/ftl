@@ -8,7 +8,7 @@ module FasterThanLight
       # Should reconsider using this generator on a step-by-step basis
       # i.e. generate the next 9 branches when the ship moves by 1 position
 
-      SERVICE_URL = "http://127.0.0.1:8000" # move to dotenv
+      SERVICE_URL = ENV["GENERATOR_SERVICE_URL"]
 
       def generate_planet
         Events::PlanetEvent.new(*planet_from_generator)
