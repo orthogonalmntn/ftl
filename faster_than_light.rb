@@ -6,11 +6,11 @@ Dir[File.join(__dir__, 'lib', 'events', '*.rb')].each { |file| require_relative 
 Dir[File.join(__dir__, 'lib', '**', '*.rb')].each { |file| require_relative file }
 
 module FasterThanLight
-  size = 3
+  size = 10
   width = 3
 
   # TODO: Let user pick which Generator to use.
-  generator = Generators::MachineGenerator.new
+  generator = Generators::GradualMachineGenerator.new
 
   print "Generating new galactic sector of size #{size} and width #{width}..."
   graph = Graph::Graph.new(size, width, generator)

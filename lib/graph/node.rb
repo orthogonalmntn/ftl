@@ -2,7 +2,7 @@ module FasterThanLight
   module Graph
     class Node
 
-      attr_reader :nodes, :position
+      attr_reader :nodes, :position, :generator
       attr_accessor :event
 
       def initialize(position:, generator:)

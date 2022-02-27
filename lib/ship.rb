@@ -35,6 +35,8 @@ module FasterThanLight
     end
 
     def event!
+      generate_event_if_necessary
+
       if event = @current_node.event
         event_response = event.resolve_event!(ship: self)
         handle_event_response(event_response)
@@ -93,6 +95,13 @@ module FasterThanLight
 
     def dec_based_on_engines(val)
       val - val * (engine.str.to_f / 10)
+    end
+
+    def generate_event_if_necessary
+      if @current_node.event.is_a?(String)
+        real_event = @current_node.generator.send("generate_real_#{@current_node.event.downcase}")
+        @current_node.event = real_event
+      end
     end
   end
 end
