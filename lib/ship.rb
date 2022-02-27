@@ -31,6 +31,7 @@ module FasterThanLight
       end
 
       @fuel -= 1
+      @fuel = @fuel.round(2)
     end
 
     def event!
