@@ -1,4 +1,5 @@
 require "faraday"
+require "jwt"
 
 module FasterThanLight
   module Generators
@@ -9,6 +10,8 @@ module FasterThanLight
       # i.e. generate the next 9 branches when the ship moves by 1 position
 
       SERVICE_URL = ENV["GENERATOR_SERVICE_URL"]
+      SECRET_KEY = ENV["JWT_SECRET_KEY"]
+      ALGORITHM = "HS512"
 
       def generate_planet
         Events::PlanetEvent.new(*planet_from_generator)
@@ -39,9 +42,24 @@ module FasterThanLight
           c.request :json
           c.headers["Accept"] = "application/json"
           c.headers["Content-Type"] = "application/json"
+          c.headers["X-Token"] = token
           c.response :json
           c.adapter :net_http
         end
+      end
+
+      def token
+        JWT.encode(
+          payload,
+          SECRET_KEY,
+          ALGORITHM,
+        )
+      end
+
+      def payload
+        {
+          exp: Time.now.to_i + 120
+        }
       end
 
     end
