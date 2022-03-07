@@ -4,6 +4,7 @@ module Operations
   class StoreUserScoreToDb < Operation
 
     attribute :score
+    attribute :at_time
 
     DB_URL = ENV["MONGODB_URL"]
     DB_NAME = ENV["MONGODB_NAME"]
@@ -17,7 +18,7 @@ module Operations
     def user_score
       {
         score: score,
-        created_at: Time.now,
+        created_at: at_time,
       }
     end
 
