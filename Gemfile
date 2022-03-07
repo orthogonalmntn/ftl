@@ -9,3 +9,5 @@ gem "memoist"
 gem "jwt"
 gem "faraday"
 gem "dotenv"
+
+gem "mongo"
