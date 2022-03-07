@@ -1,7 +1,7 @@
 require 'mongo'
 
 module Operations
-  class ShowHighScores < Operation
+  class FetchHighScores < Operation
 
     attribute :top
 
@@ -9,18 +9,10 @@ module Operations
     DB_NAME = ENV["MONGODB_NAME"]
 
     def call
-      results = fetch_top_results
-      display results
+      fetch_top_results
     end
 
     private
-
-    def display(results)
-      puts "HIGH SCORES:"
-      results.each do |res|
-        puts "#{res["score"]} | #{res["created_at"]}"
-      end
-    end
 
     def fetch_top_results
       collection.find({}, { projection: { _id: 0 } }).sort(score: -1).limit(top).to_a

@@ -27,7 +27,8 @@ module FasterThanLight
           puts "Your score is: #{in_green calculated_user_score}"
 
           Operations::StoreUserScoreToDb.call(score: calculated_user_score)
-          Operations::ShowHighScores.call(top: 5)
+          scores = Operations::FetchHighScores.call(top: 5)
+          display_high_scores scores
           break
         end
 
@@ -79,6 +80,17 @@ module FasterThanLight
         print "FUEL: #{based_on_amount @ship.fuel} / "
         print "HEALTH: #{based_on_amount @ship.health} / "
         puts "SCRAP: #{based_on_amount @ship.scrap}"
+      end
+    end
+
+    def display_high_scores(scores)
+      puts "HIGH SCORES:"
+      scores.each do |res|
+        if res["score"] == calculated_user_score
+          puts "#{in_green res['score']} | #{in_green res["created_at"]}"
+        else
+          puts "#{res["score"]} | #{res["created_at"]}"
+        end
       end
     end
 
