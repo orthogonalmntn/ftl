@@ -31,4 +31,3 @@ module Operations
 
   end
 end
-

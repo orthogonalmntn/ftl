@@ -27,6 +27,7 @@ module FasterThanLight
           puts "Your score is: #{in_green calculated_user_score}"
 
           Operations::StoreUserScoreToDb.call(score: calculated_user_score)
+          Operations::ShowHighScores.call(top: 5)
           break
         end
 
