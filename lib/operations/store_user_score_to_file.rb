@@ -1,5 +1,5 @@
 module Operations
-  class StoreUserScore < Operation
+  class StoreUserScoreToFile < Operation
 
     FILE_NAME = "scores.out"
 
