@@ -32,7 +32,11 @@ module FasterThanLight
           break
         end
 
-        @map.display_map(@ship.position)
+        nodes_to_check = [@ship.current_node_id] | @ship.next_nodes
+        infected_nodes = Operations::CheckInfectedNodes.call(graph_id: @ship.graph_id, node_ids: nodes_to_check)
+        puts in_red "YOU ARE ON AN INFECTED NODE" if infected_nodes.include?(@ship.current_node_id)
+
+        @map.display_map(@ship.position, infected_nodes)
 
         input = get_user_input
         break if input == "quit"

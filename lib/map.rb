@@ -15,9 +15,9 @@ module FasterThanLight
       @positions_and_visited_nodes[pos].uniq!
     end
 
-    def display_map(pos)
+    def display_map(pos, infected_nodes)
       visited_nodes = @positions_and_visited_nodes[pos] || []
-      display_single_branch(visited_nodes)
+      display_single_branch(visited_nodes, infected_nodes)
     end
 
     def display_entire_map(current_position:)
@@ -45,14 +45,15 @@ module FasterThanLight
 
     private
 
-    def display_single_branch(visited_nodes)
+    def display_single_branch(visited_nodes, infected_nodes)
       puts "   #{in_green 'o'}"
       puts " / | \\"
-      # Visited nodes are displayed in gray
-      # Non-visited nodes are displayed in green
+
       (1..3).each do |n|
         if visited_nodes.include?(n)
           print "#{in_gray 'o'}"
+        # elsif infected_next_nodes.include?(n)
+        #   print "#{in_red 'o'}"
         else
           print "#{in_light_blue 'o'}"
         end

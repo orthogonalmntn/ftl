@@ -11,3 +11,4 @@ gem "faraday"
 gem "dotenv"
 
 gem "mongo"
+gem "sidekiq"

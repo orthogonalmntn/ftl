@@ -1,9 +1,10 @@
 module FasterThanLight
   class Ship
 
-    attr_reader :fuel, :health, :scrap, :weapon, :engine, :position
+    attr_reader :fuel, :health, :scrap, :weapon, :engine,
+      :position, :graph_id, :current_node_id, :next_nodes
 
-    def initialize(sector_graph:)
+    def initialize(sector_graph:, graph_id:)
       @fuel = 10.0
       @health = 10
       @scrap = 10
@@ -11,6 +12,7 @@ module FasterThanLight
       @engine = Components::Engine.new
       @current_node = sector_graph.start_node
       @previous_nodes = [@current_node]
+      @graph_id = graph_id
     end
 
     def move_ship_to_new_position!(input)
@@ -51,6 +53,14 @@ module FasterThanLight
 
     def position
       @current_node.position
+    end
+
+    def current_node_id
+      @current_node.id
+    end
+
+    def next_nodes
+      @current_node.nodes.map(&:id)
     end
 
     def final_position?
