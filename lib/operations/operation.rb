@@ -1,4 +1,5 @@
 require "virtus"
+require_relative "db/db_client"
 
 module Operations
   class Operation

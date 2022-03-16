@@ -1,12 +1,7 @@
-require 'mongo'
-
 module Operations
   class StoreSimplifiedGraph < Operation
 
     attribute :size
-
-    DB_URL = ENV["MONGODB_URL"]
-    DB_NAME = ENV["MONGODB_NAME"]
 
     def call
       store_to_db simplified_graph
@@ -15,7 +10,7 @@ module Operations
     private
 
     def store_to_db(graph)
-      db_client[:graphs].insert_one(graph)
+      ::Db::DbClient.client[:graphs].insert_one(graph)
     end
 
     def simplified_graph
@@ -24,10 +19,6 @@ module Operations
       simplified_graph = {}
       size.times { |num| simplified_graph[num] = 0 }
       simplified_graph
-    end
-
-    def db_client
-      Mongo::Client.new([ DB_URL ], :database => DB_NAME)
     end
 
   end

@@ -1,13 +1,8 @@
-require 'mongo'
-
 module Operations
   class StoreUserScoreToDb < Operation
 
     attribute :score
     attribute :at_time
-
-    DB_URL = ENV["MONGODB_URL"]
-    DB_NAME = ENV["MONGODB_NAME"]
 
     def call
       collection.insert_one(user_score)
@@ -23,11 +18,7 @@ module Operations
     end
 
     def collection
-      db_client[:user_scores]
-    end
-
-    def db_client
-      Mongo::Client.new([ DB_URL ], :database => DB_NAME)
+      ::Db::DbClient.client[:user_scores]
     end
 
   end

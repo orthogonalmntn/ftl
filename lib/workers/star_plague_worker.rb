@@ -1,5 +1,5 @@
 require 'sidekiq'
-require 'mongo'
+require_relative '../operations/db/db_client'
 
 class StarPlagueWorker
   include Sidekiq::Job
@@ -7,7 +7,7 @@ class StarPlagueWorker
   sidekiq_options retry: false
 
   def perform(simplified_graph_id)
-    db_client = Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'ftl_db')
+    db_client = ::Db::DbClient.client
     graph_id = {:_id => BSON::ObjectId(simplified_graph_id)}
     graph = db_client[:graphs].find(graph_id)
 
