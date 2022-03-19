@@ -3,6 +3,16 @@ Dir[File.join(__dir__, '..', 'lib', 'events', '*.rb')].each { |file| require_rel
 require_relative '../lib/operations/operation'
 Dir[File.join(__dir__, '..', 'lib', '**', '*.rb')].each { |file| require_relative file }
 require 'pry'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = "spec/vcr"
+  c.hook_into :faraday
+  # c.configure_rspec_metadata!
+  # to allow you to record cassettes for each it / context blocks
+  # do it "test case" :vcr do ...
+  # but it creates too many cassettes (one per each block)
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

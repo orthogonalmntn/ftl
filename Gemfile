@@ -1,8 +1,5 @@
 source "https://rubygems.org"
 
-gem "rubocop"
-gem "pry"
-gem "rspec"
 gem "virtus"
 gem "memoist"
 
@@ -12,3 +9,13 @@ gem "dotenv"
 
 gem "mongo"
 gem "sidekiq"
+
+group :development do
+  gem "rubocop"
+  gem "pry"
+end
+
+group :test do
+  gem "rspec"
+  gem "vcr"
+end

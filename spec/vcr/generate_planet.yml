@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8000/planet
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      X-Token:
+      - eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2NDc1NTU3MDF9.H6Xq5BXZ9EnGyOT6dITt0r5Bujcc6MhMoasiyOLSK5tkDDxUy6e2a9z7MsdhJRHml5757OWDVCyBNoQG7X966g
+      User-Agent:
+      - Faraday v2.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 17 Mar 2022 22:19:40 GMT
+      server:
+      - uvicorn
+      content-length:
+      - '126'
+      content-type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"name":"Tethys","description":"The planet Tethys can be described
+        as a planet that is both rocky and in the habitable zone."}'
+  recorded_at: Thu, 17 Mar 2022 22:19:42 GMT
+recorded_with: VCR 6.1.0

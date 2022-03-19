@@ -1,4 +1,4 @@
-### Faster Than (Ruby-Refracted) Light
+## Faster Than (Ruby-Refracted) Light
 
 Set up your env vars:
 
@@ -8,7 +8,7 @@ Start the game:
 
 ```ruby faster_than_light.rb```
 
-## Background Work:
+### Background Work:
 
 Start Sidekiq: `bundle exec sidekiq -r ./lib/workers/star_plague_worker.rb`
 
