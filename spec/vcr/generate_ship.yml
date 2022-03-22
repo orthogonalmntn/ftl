@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8000/ship
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      X-Token:
+      - eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2NDc1OTI5NjZ9.NRrK0Vee4pPuVrFCWt6OqGB9JqvfTsQAOvDilu6q4PjaZahzBegvUjSiZDpbzXxFmGGrsfYKzpjRZydVnbWR4w
+      User-Agent:
+      - Faraday v2.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 18 Mar 2022 08:40:46 GMT
+      server:
+      - uvicorn
+      content-length:
+      - '243'
+      content-type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"name":"Earth","description":"The space ship Earth can be described
+        as a world of dense foam. The mass of the Earth''s atmosphere is 10 times
+        smaller than the mass of the Sun. For such an atmosphere, Earth is 1.5 times
+        heavier than the Moon."}'
+  recorded_at: Fri, 18 Mar 2022 08:40:48 GMT
+recorded_with: VCR 6.1.0

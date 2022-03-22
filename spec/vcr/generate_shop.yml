@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8000/shop
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      X-Token:
+      - eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2NDc1OTI2ODd9.71GrQS8drv8vNqingCvJXYTt9uWtypfrf2MqAuBFsDmBfGrYtG_Nw0SnNA-igjg1I-XwjnsLZ1u4Guqw-MiQcQ
+      User-Agent:
+      - Faraday v2.2.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Fri, 18 Mar 2022 08:36:07 GMT
+      server:
+      - uvicorn
+      content-length:
+      - '274'
+      content-type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"name":"David Tenn","description":"The merchandise shop in space David
+        Tenn can be described as a collection of everything, but not any different
+        than the many stores already under construction, including Space Needle stores,
+        Trader Joe''s and The Diners of Beverly Hills."}'
+  recorded_at: Fri, 18 Mar 2022 08:36:08 GMT
+recorded_with: VCR 6.1.0

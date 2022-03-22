@@ -2,9 +2,6 @@ module Helpers
   module Display
     module_function
 
-    # For methods related to pretty displaying of information on screen
-    # https://stackoverflow.com/questions/1489183/how-can-i-use-ruby-to-colorize-the-text-output-to-a-terminal
-
     COLORS_AND_CODES = {
       "red" => 31,
       "green" => 32,
@@ -24,17 +21,6 @@ module Helpers
       50.times { print char }; puts
       yield
       50.times { print char }; puts
-    end
-
-    # below this the end-codes are different
-
-    def in_blinking(str)
-      # not working for some reason:
-      "\e[5m#{str}\e[25m"
-    end
-
-    def in_italic(str)
-      "\e[3m#{str}\e[23m"
     end
 
     def based_on_amount(val)
