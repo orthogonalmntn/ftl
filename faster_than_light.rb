@@ -11,6 +11,14 @@ module FasterThanLight
   size = 10
   width = 3
 
+  puts <<-TEXT
+
+       Faster Than Ruby-Refracted Light
+
+       Game Version #{VERSION}
+
+  TEXT
+
   generator = Generators::GradualMachineGenerator.new
 
   print "Generating new galactic sector of size #{size} and width #{width}..."
@@ -25,7 +33,7 @@ module FasterThanLight
 
   puts "Done!"
 
-  puts "Starting up background work..."
+  print "Starting up background work..."
 
   StarPlagueWorker.perform_async(simplified_graph_id)
 
