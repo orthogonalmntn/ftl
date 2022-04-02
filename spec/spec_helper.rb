@@ -1,9 +1,5 @@
-Dir[File.join(__dir__, '..', 'lib', 'helpers', '*.rb')].each { |file| require_relative file }
-Dir[File.join(__dir__, '..', 'lib', 'events', '*.rb')].each { |file| require_relative file }
-require_relative '../lib/operations/operation'
-Dir[File.join(__dir__, '..', 'lib', '**', '*.rb')].each { |file| require_relative file }
-require 'pry'
-require 'vcr'
+require "./config/application"
+require "vcr"
 
 VCR.configure do |c|
   c.cassette_library_dir = "spec/vcr"
