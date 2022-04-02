@@ -2,7 +2,8 @@ module FasterThanLight
   class Ship
 
     attr_reader :fuel, :health, :scrap, :weapon, :engine,
-      :position, :graph_id, :current_node_id, :next_nodes
+      :position, :graph_id, :current_node_id, :next_nodes,
+      :event_producer
 
     def initialize(sector_graph:, graph_id:)
       @fuel = 10.0
@@ -13,6 +14,7 @@ module FasterThanLight
       @current_node = sector_graph.start_node
       @previous_nodes = [@current_node]
       @graph_id = graph_id
+      @event_producer = ::Events::Messaging::Producer.new
     end
 
     def move_ship_to_new_position!(input)

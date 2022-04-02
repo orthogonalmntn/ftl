@@ -12,6 +12,8 @@ gem "dotenv"
 gem "mongo"
 gem "sidekiq"
 
+gem "bunny"
+
 group :development do
   gem "rubocop"
   gem "pry"
