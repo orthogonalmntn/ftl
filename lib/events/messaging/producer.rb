@@ -12,7 +12,7 @@ module Events
       ].freeze
 
       def initialize
-        connection = Bunny.new
+        connection = Bunny.new(ENV["RABBITMQ_URI"])
         connection.start
 
         @channel = connection.create_channel
