@@ -4,6 +4,12 @@ require "json"
 module Events
   module Messaging
     class Producer
+      include ::Helpers::Display
+
+      ERROR_MESSAGES = [
+        "ERR: Failed to connect to RabbitMQ Server!. Make sure RabbitMQ is running and properly configured.",
+        "ERR: Events will *not* be transmitted."
+      ].freeze
 
       def initialize
         connection = Bunny.new
@@ -11,11 +17,14 @@ module Events
 
         @channel = connection.create_channel
         @queue = @channel.queue("game_events")
+      rescue Bunny::TCPConnectionFailed
+        ERROR_MESSAGES.each { puts in_red _1 }
       end
 
       def emit_event(payload)
-        serialized_payload = build_payload(payload)
+        return unless @channel
 
+        serialized_payload = build_payload(payload)
         @channel.default_exchange.publish(serialized_payload, routing_key: @queue.name)
       end
 
