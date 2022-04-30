@@ -12,7 +12,19 @@ module FasterThanLight
 
   TEXT
 
-  generator = Generators::GradualMachineGenerator.new
+  chosen_generator = Helpers::UserInput.get_input(
+    phrase: "Choose a content generator? File, Local, ML?",
+    choices: ["F", "L", "M"],
+  )
+
+  generator = case chosen_generator
+              when "F"
+                Generators::FromFileGenerator.new
+              when "L"
+                Generators::LocalGenerator.new
+              when "M"
+                Generators::GradualMachineGenerator.new
+              end
 
   print "Generating new galactic sector of size #{size} and width #{width}..."
 

@@ -84,16 +84,13 @@ module FasterThanLight
     def handle_event_response(event_response)
       return unless event_response
 
-      # Fuel
       @fuel += inc_based_on_engines(event_response.fuel_gain) if event_response.fuel_gain
       @fuel -= dec_based_on_engines(event_response.fuel_loss) if event_response.fuel_loss
       @fuel = @fuel.round(2)
 
-      # Scrap
       @scrap += event_response.scrap_gain if event_response.scrap_gain
       @scrap -= event_response.scrap_loss if event_response.scrap_loss
 
-      # Health
       @health += event_response.health_gain if event_response.health_gain
       @health -= event_response.ship_damage if event_response.ship_damage
     end
